@@ -71,11 +71,14 @@ require (
 	github.com/gin-gonic/gin v1.10.1
 	github.com/go-ozzo/ozzo-validation v3.6.0+incompatible
 	github.com/go-ozzo/ozzo-validation/v4 v4.3.0
+	github.com/go-resty/resty/v2 v2.16.5
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0
+	github.com/samber/lo v1.51.0
 	github.com/spf13/pflag v1.0.6 // indirect
 	github.com/spf13/viper v1.20.1
 	github.com/stretchr/testify v1.10.0
+	github.com/test-go/testify v1.1.4
 	go.mongodb.org/mongo-driver v1.17.4
 	go.uber.org/fx v1.24.0
 )

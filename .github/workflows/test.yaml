@@ -5,7 +5,7 @@ on:
 
 jobs:
   test:
-    name: Run unit tests
+    name: Run tests
     timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
@@ -16,5 +16,8 @@ jobs:
         with:
           go-version-file: "go.mod"
 
-      - name: Execute tests
+      - name: Execute unit tests
         run: make test
+
+      - name: Execute integration tests
+        run: make test-integration

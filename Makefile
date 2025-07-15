@@ -13,6 +13,9 @@ mongo-down:
 test: mongo
 	go test -v -race ./...
 
+test-integration: mongo
+	go test -v -race ./test/integration/...
+
 start: mongo
 	go run cmd/twelvefactorapp/main.go config  > configs/twelvefactorapp.yaml
 
