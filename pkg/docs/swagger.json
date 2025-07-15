@@ -1,0 +1,89 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "TwelveFactorApp API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/article": {
+            "post": {
+                "tags": [
+                    "Article"
+                ],
+                "summary": "Create Article",
+                "parameters": [
+                    {
+                        "description": "Article",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/article.ArticleCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/article.ArticleGet"
+                        }
+                    }
+                }
+            }
+        },
+        "/article/{id}": {
+            "get": {
+                "tags": [
+                    "Article"
+                ],
+                "summary": "Get Article",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Article",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/article.ArticleGet"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "article.ArticleCreate": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "article.ArticleGet": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

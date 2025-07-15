@@ -1,0 +1,56 @@
+definitions:
+  article.ArticleCreate:
+    properties:
+      createdAt:
+        type: string
+      title:
+        type: string
+    type: object
+  article.ArticleGet:
+    properties:
+      createdAt:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: TwelveFactorApp API
+  version: "1.0"
+paths:
+  /article:
+    post:
+      parameters:
+      - description: Article
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/article.ArticleCreate'
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/article.ArticleGet'
+      summary: Create Article
+      tags:
+      - Article
+  /article/{id}:
+    get:
+      parameters:
+      - description: Article
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/article.ArticleGet'
+      summary: Get Article
+      tags:
+      - Article
+swagger: "2.0"
