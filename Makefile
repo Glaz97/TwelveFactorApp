@@ -10,7 +10,7 @@ mongo:
 mongo-down:
 	docker compose -f test/docker-compose.yaml -p twelvefactorapp down
 
-test:
+test: mongo
 	go test -v -race ./...
 
 start: mongo
