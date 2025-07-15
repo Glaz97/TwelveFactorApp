@@ -41,7 +41,9 @@ func (h *ArticleHandler) RegisterRouters(r gin.IRouter) {
 func (h *ArticleHandler) GetArticle(c *gin.Context) {
 	articleID, err := marshal.ObjectIDFromParam(c, "id")
 	if err != nil {
-		c.JSON(http.StatusBadRequest, err)
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
 		errhttp.AbortWithError(c, err)
 		return
 	}
@@ -66,7 +68,9 @@ func (h *ArticleHandler) GetArticle(c *gin.Context) {
 func (h *ArticleHandler) CreateArticle(c *gin.Context) {
 	var article article.ArticleCreate
 	if err := marshal.BindJSON(c, &article); err != nil {
-		c.JSON(http.StatusBadRequest, err)
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
 		errhttp.AbortWithError(c, err)
 		return
 	}
