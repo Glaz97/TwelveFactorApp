@@ -1,0 +1,20 @@
+name: Test
+on:
+  push:
+  workflow_call:
+
+jobs:
+  test:
+    name: Run tests
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code and set Go version
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: "go.mod"
+
+      - name: Run unit tests
+        run: make test

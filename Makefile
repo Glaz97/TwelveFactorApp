@@ -10,6 +10,9 @@ mongo:
 mongo-down:
 	docker compose -f test/docker-compose.yaml -p twelvefactorapp down
 
+test: mongo
+	go test -v -race ./...
+
 start: mongo
 	go run cmd/twelvefactorapp/main.go config  > configs/twelvefactorapp.yaml
 
