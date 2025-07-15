@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  twelvefactorapp:
+    build:
+      context: ../..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "127.0.0.1:8056:8056"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "37017:27017"

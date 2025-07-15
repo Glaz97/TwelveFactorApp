@@ -16,8 +16,10 @@ jobs:
         with:
           go-version-file: "go.mod"
 
-      - name: Execute unit tests
-        run: make test
+      - name: Start MongoDB
+        run: |
+          docker compose -f test/integration/docker-compose.yaml up -d
+          sleep 10
 
-      - name: Execute integration tests
-        run: make test-integration
+      - name: Execute tests
+        run: make test
