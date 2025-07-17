@@ -38,4 +38,6 @@ go run cmd/twelvefactorapp/main.go
 - to get article execute: `GET localhost:8056/article/{articleId}`
 ###### where {articleId} - id field, of a response object of a POST call
 
+- swagger: `GET localhost:8056/docs/index.html` 
+
 - status http://localhost:8056/status

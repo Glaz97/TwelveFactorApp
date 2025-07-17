@@ -76,6 +76,8 @@ require (
 	github.com/spf13/pflag v1.0.6 // indirect
 	github.com/spf13/viper v1.20.1
 	github.com/stretchr/testify v1.10.0
+	github.com/swaggo/files v1.0.1
+	github.com/swaggo/gin-swagger v1.6.0
 	go.mongodb.org/mongo-driver v1.17.4
 	go.uber.org/fx v1.24.0
 )

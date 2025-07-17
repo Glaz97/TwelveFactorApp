@@ -7,8 +7,11 @@ import (
 	"github.com/Glaz97/twelvefactorapp/internal/config"
 	v1 "github.com/Glaz97/twelvefactorapp/internal/handler/v1"
 	"github.com/Glaz97/twelvefactorapp/logger"
+	"github.com/Glaz97/twelvefactorapp/pkg/docs"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	swaggerfiles "github.com/swaggo/files"
+	ginswagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/zap"
 )
 
@@ -37,6 +40,10 @@ func NewHandler(
 
 	// System group
 	{
+		// Swagger
+		router.GET("/docs/*any", ginswagger.WrapHandler(swaggerfiles.Handler))
+		docs.SwaggerInfo.BasePath = swagger.BasePath
+
 		// Health check
 		router.GET("/status", statusHandler)
 	}
