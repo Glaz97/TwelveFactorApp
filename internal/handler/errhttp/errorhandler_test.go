@@ -14,7 +14,7 @@ import (
 	"go.uber.org/zap"
 )
 
-func TestAPIKeyValidation(t *testing.T) {
+func TestErrHandler(t *testing.T) {
 	log, err := zap.NewDevelopment()
 	require.NoError(t, err)
 	gin.SetMode(gin.TestMode)
