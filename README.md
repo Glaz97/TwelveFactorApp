@@ -40,4 +40,4 @@ go run cmd/twelvefactorapp/main.go
 
 - swagger: `GET localhost:8056/docs/index.html` 
 
-- status http://localhost:8056/status
+- status `GET http://localhost:8056/status`
