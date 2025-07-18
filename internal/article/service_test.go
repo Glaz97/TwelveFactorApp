@@ -42,4 +42,12 @@ func TestArticleService(t *testing.T) {
 	article2, err := s.GetArticle(ctx, newArticle2.ID)
 	require.NoError(t, err)
 	require.Equal(t, newArticle2.Title, article2.Title)
+
+	// duplicated title error
+	_, err = s.CreateArticle(ctx, &ArticleCreate{Title: "test2"})
+	require.Error(t, err)
+
+	// empty title error
+	_, err = s.CreateArticle(ctx, &ArticleCreate{Title: ""})
+	require.Error(t, err)
 }

@@ -6,6 +6,7 @@ import (
 
 	"github.com/Glaz97/twelvefactorapp/internal/config"
 	"github.com/Glaz97/twelvefactorapp/pkg/types"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.uber.org/zap"
@@ -40,17 +41,19 @@ func NewDatabase(cfg *config.MongoDB, log *zap.Logger) (*Database, error) {
 	if err != nil {
 		return nil, err
 	}
-	db := client.Database(cfg.Database)
 
 	return &Database{
-		Database: db,
+		Database: client.Database(cfg.Database),
 		log:      log,
 	}, nil
 }
 
 func (db *Database) Start(ctx context.Context) error {
-	err := db.Client().Ping(ctx, nil)
-	if err != nil {
+	if err := db.Client().Ping(ctx, nil); err != nil {
+		return err
+	}
+
+	if err := db.CreateIndexes(ctx); err != nil {
 		return err
 	}
 
@@ -59,6 +62,21 @@ func (db *Database) Start(ctx context.Context) error {
 
 func (db *Database) Stop(ctx context.Context) error {
 	return db.Client().Disconnect(ctx)
+}
+
+func (db *Database) CreateIndexes(ctx context.Context) error {
+	_, err := db.Collection(ArticlesCollection).Indexes().CreateMany(ctx, []mongo.IndexModel{
+		{
+			Keys:    bson.D{{Key: "title", Value: 1}},
+			Options: options.Index().SetUnique(true),
+		},
+	},
+	)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func NewDuplicateKeyError(err error) error {
