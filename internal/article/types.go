@@ -21,7 +21,7 @@ type ArticleGet struct {
 
 type ArticleCreate struct {
 	Title     string     `json:"title" bson:"title"`
-	CreatedAt *time.Time `json:"createdAt" bson:"createdAt"`
+	CreatedAt *time.Time `json:"-" bson:"createdAt"`
 }
 
 func (a *ArticleCreate) Validate() error {
